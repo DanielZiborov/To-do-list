@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+
+class GroupsWidget extends StatefulWidget {
+  const GroupsWidget({super.key});
+
+  @override
+  State<GroupsWidget> createState() => _GroupsWidgetState();
+}
+
+class _GroupsWidgetState extends State<GroupsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
