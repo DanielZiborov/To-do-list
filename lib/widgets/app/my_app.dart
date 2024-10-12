@@ -8,8 +8,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/groups/':(context) => const GroupsWidget(),
+        '/groups/': (context) => const GroupsWidget(),
       },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/groups/',
     );
   }
 }
