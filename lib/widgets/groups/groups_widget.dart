@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class GroupsWidget extends StatelessWidget {
   const GroupsWidget({super.key});
@@ -51,9 +52,23 @@ class _GroupListRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      title: Text("sdjvnsdjk vnvjsnvj vehvnjvnsj"),
-      trailing: Icon(Icons.chevron_right),
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context){},
+            backgroundColor: const Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: const ListTile(
+        title: Text("sdjvnsdjk vnvjsnvj vehvnjvnsj"),
+        trailing: Icon(Icons.chevron_right),
+      ),
     );
   }
 }
