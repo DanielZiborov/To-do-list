@@ -5,7 +5,7 @@ class GroupsWidget extends StatelessWidget {
   const GroupsWidget({super.key});
 
   void showForm(BuildContext context) {
-    Navigator.pushNamed(context, '/groups/form');
+    Navigator.of(context).pushNamed('/groups/form');
   }
 
   @override
