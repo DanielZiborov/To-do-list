@@ -12,11 +12,7 @@ class GroupsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text(
-          "Группы",
-          style: TextStyle(color: Colors.white),
-        ),
+        title: const Text("Группы"),
         centerTitle: true,
       ),
       body: const _GroupListWidget(),

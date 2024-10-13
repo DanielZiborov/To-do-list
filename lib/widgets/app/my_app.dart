@@ -11,10 +11,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/groups': (context) => const GroupsWidget(),
-        '/groups/form':(context) => const GroupFormWidget(),
+        '/groups/form': (context) => const GroupFormWidget(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          color: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
       ),
       initialRoute: '/groups',
     );

@@ -5,8 +5,12 @@ class GroupFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text("Новая группа"),
+        centerTitle: true,
+      ),
     );
   }
 }
