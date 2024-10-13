@@ -4,6 +4,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class GroupsWidget extends StatelessWidget {
   const GroupsWidget({super.key});
 
+  void showForm(BuildContext context) {
+    Navigator.pushNamed(context, '/groups/form');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,7 @@ class GroupsWidget extends StatelessWidget {
       ),
       body: const _GroupListWidget(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => showForm(context),
         child: const Icon(Icons.add),
       ),
     );
@@ -70,7 +74,7 @@ class _GroupListRowWidget extends StatelessWidget {
         child: ListTile(
           title: const Text("sdjvnsdjk vnvjsnvj vehvnjvnsj"),
           trailing: const Icon(Icons.chevron_right),
-          onTap: (){},
+          onTap: () {},
         ),
       ),
     );
