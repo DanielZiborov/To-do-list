@@ -54,10 +54,10 @@ class _GroupListRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       endActionPane: ActionPane(
-        motion: const ScrollMotion(),
+        motion: const BehindMotion(),
         children: [
           SlidableAction(
-            onPressed: (context){},
+            onPressed: (context) {},
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -65,9 +65,13 @@ class _GroupListRowWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: const ListTile(
-        title: Text("sdjvnsdjk vnvjsnvj vehvnjvnsj"),
-        trailing: Icon(Icons.chevron_right),
+      child: ColoredBox(
+        color: Colors.white,
+        child: ListTile(
+          title: const Text("sdjvnsdjk vnvjsnvj vehvnjvnsj"),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: (){},
+        ),
       ),
     );
   }
