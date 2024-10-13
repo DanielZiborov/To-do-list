@@ -25,7 +25,7 @@ class GroupFormWidgetBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         title: const Text("Новая группа"),
         centerTitle: true,
       ),
