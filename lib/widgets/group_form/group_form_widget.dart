@@ -11,13 +11,15 @@ class GroupFormWidget extends StatelessWidget {
         title: const Text("Новая группа"),
         centerTitle: true,
       ),
-      body: Center(
-        child: Container(
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: _GroupNameWidget(),
-          ),
+      body: const Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: _GroupNameWidget(),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.done),
       ),
     );
   }
