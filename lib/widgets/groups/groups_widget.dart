@@ -64,14 +64,15 @@ class _GroupListRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final group =
-        GroupsWidgetModelProvider.read(context)?.model.groups[indexInList];
+    final model = GroupsWidgetModelProvider.read(context)?.model;
+    final group = model?.groups[indexInList];
+
     return Slidable(
       endActionPane: ActionPane(
         motion: const BehindMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) => model?.deleteGroup(indexInList),
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,

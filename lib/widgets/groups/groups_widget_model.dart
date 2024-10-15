@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/domain/entity/group.dart';
-import 'package:to_do_list/main.dart';
 
 class GroupsWidgetModel extends ChangeNotifier {
   var _groups = <Group>[];
@@ -16,7 +15,7 @@ class GroupsWidgetModel extends ChangeNotifier {
     Navigator.of(context).pushNamed('/groups/form');
   }
 
-  void _readGroupsFromHive(Box<Group> box){
+  void _readGroupsFromHive(Box<Group> box) {
     _groups = box.values.toList();
     notifyListeners();
   }
@@ -30,6 +29,15 @@ class GroupsWidgetModel extends ChangeNotifier {
     _readGroupsFromHive(box);
 
     box.listenable().addListener(() => _readGroupsFromHive(box));
+  }
+
+  void deleteGroup(int groupIndex) async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+
+    final box = await Hive.openBox<Group>('groups_box');
+    await box.deleteAt(groupIndex);
   }
 }
 
