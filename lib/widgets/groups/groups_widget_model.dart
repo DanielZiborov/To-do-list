@@ -15,6 +15,18 @@ class GroupsWidgetModel extends ChangeNotifier {
     Navigator.of(context).pushNamed('/groups/form');
   }
 
+  void showTasks(BuildContext context, int groupIndex) async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+
+    final box = await Hive.openBox<Group>('groups_box');
+
+    final groupKey = box.keyAt(groupIndex) as int;
+
+    await Navigator.of(context).pushNamed('/groups/tasks',arguments: groupKey);
+  }
+
   void _readGroupsFromHive(Box<Group> box) {
     _groups = box.values.toList();
     notifyListeners();
