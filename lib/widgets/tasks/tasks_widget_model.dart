@@ -1,11 +1,31 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:to_do_list/domain/entity/group.dart';
 
 class TasksWidgetModel extends ChangeNotifier {
   int groupKey;
-  TasksWidgetModel({
-    required this.groupKey,
-  });
+  late final Future<Box<Group>> _groupBox;
+  Group? _group;
+  Group? get group => _group;
+
+  TasksWidgetModel({required this.groupKey}) {
+    setUp();
+  }
+
+  void loadGroup() async {
+    final box = await _groupBox;
+    _group = box.get(groupKey);
+    notifyListeners();
+  }
+
+  void setUp() {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+
+    _groupBox = Hive.openBox<Group>('groups_box');
+    loadGroup();
+  }
 }
 
 class TasksWidgetModelProvider extends InheritedNotifier {
