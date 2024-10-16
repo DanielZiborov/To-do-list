@@ -6,6 +6,10 @@ part 'group.g.dart';
 class Group {
   @HiveField(0)
   String name;
+
+  @HiveField(1)
+  HiveList? tasks;
+
   Group({
     required this.name,
   });
