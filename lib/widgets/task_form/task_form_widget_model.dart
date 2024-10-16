@@ -31,3 +31,31 @@ class TaskFormWidgetModel {
     Navigator.of(context).pop();
   }
 }
+
+class TaskFormWidgetModelProvider extends InheritedWidget {
+  final TaskFormWidgetModel model;
+
+  const TaskFormWidgetModelProvider({
+    super.key,
+    required super.child,
+    required this.model,
+  });
+
+  static TaskFormWidgetModelProvider? watch(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<TaskFormWidgetModelProvider>();
+  }
+
+  static TaskFormWidgetModelProvider? read(BuildContext context) {
+    final widget = context
+        .getElementForInheritedWidgetOfExactType<TaskFormWidgetModelProvider>()
+        ?.widget;
+    return widget is TaskFormWidgetModelProvider ? widget : null;
+  }
+
+  @override
+  bool updateShouldNotify(TaskFormWidgetModelProvider oldWidget) {
+    return false;
+  }
+}
+
