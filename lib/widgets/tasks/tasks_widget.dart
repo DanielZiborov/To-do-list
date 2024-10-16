@@ -9,6 +9,12 @@ class TasksWidget extends StatefulWidget {
 
 class _TasksWidgetState extends State<TasksWidget> {
   @override
+  void didChangeDependencies() {
+    final groupKey = ModalRoute.of(context)!.settings.arguments as int;
+    super.didChangeDependencies();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
