@@ -39,6 +39,10 @@ class TasksWidgetBody extends StatelessWidget {
         title: const Text('Tasks'),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.add),
+      ),
       body: Container(),
     );
   }
