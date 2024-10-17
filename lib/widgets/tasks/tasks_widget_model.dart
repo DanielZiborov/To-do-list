@@ -3,14 +3,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/domain/entity/group.dart';
 import 'package:to_do_list/domain/entity/task.dart';
 
-
-
 class TasksWidgetModel extends ChangeNotifier {
   int groupKey;
   late final Future<Box<Group>> _groupBox;
 
   var _tasks = <Task>[];
- 
+
   List<Task> get tasks => _tasks.toList();
 
   Group? _group;
@@ -59,6 +57,14 @@ class TasksWidgetModel extends ChangeNotifier {
 
   void showForm(BuildContext context) {
     Navigator.of(context).pushNamed('/groups/tasks/form', arguments: groupKey);
+  }
+
+  void doneToggle(int groupIndex) async {
+    final task = _group?.tasks?[groupIndex];
+    final currentState = task?.isDone ?? false;
+    task?.isDone = !currentState;
+    await task?.save();
+    notifyListeners();
   }
 }
 
