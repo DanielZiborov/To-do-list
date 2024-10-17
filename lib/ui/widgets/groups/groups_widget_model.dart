@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/domain/entity/group.dart';
 import 'package:to_do_list/domain/entity/task.dart';
+import 'package:to_do_list/ui/navigation/main_navigation.dart';
 
 class GroupsWidgetModel extends ChangeNotifier {
   var _groups = <Group>[];
@@ -13,7 +14,7 @@ class GroupsWidgetModel extends ChangeNotifier {
   List<Group> get groups => _groups.toList();
 
   void showForm(BuildContext context) {
-    Navigator.of(context).pushNamed('/groups/form');
+    Navigator.of(context).pushNamed(MainNavigationRouteNames.groupsForm);
   }
 
   void showTasks(BuildContext context, int groupIndex) async {

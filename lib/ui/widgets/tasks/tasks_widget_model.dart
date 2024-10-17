@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/domain/entity/group.dart';
 import 'package:to_do_list/domain/entity/task.dart';
+import 'package:to_do_list/ui/navigation/main_navigation.dart';
 
 class TasksWidgetModel extends ChangeNotifier {
   int groupKey;
@@ -56,7 +57,7 @@ class TasksWidgetModel extends ChangeNotifier {
   }
 
   void showForm(BuildContext context) {
-    Navigator.of(context).pushNamed('/groups/tasks/form', arguments: groupKey);
+    Navigator.of(context).pushNamed(MainNavigationRouteNames.tasksForm, arguments: groupKey);
   }
 
   void doneToggle(int groupIndex) async {
