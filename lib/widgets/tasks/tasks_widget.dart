@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_list/widgets/tasks/tasks_widget_model.dart';
 
 class TasksWidget extends StatefulWidget {
@@ -46,7 +47,59 @@ class TasksWidgetBody extends StatelessWidget {
         onPressed: () => model?.showForm(context),
         child: const Icon(Icons.add),
       ),
-      body: Container(),
+      body: const _TaskListWidget(),
+    );
+  }
+}
+
+class _TaskListWidget extends StatelessWidget {
+  const _TaskListWidget();
+  @override
+  Widget build(BuildContext context) {
+    final groupsCount =
+        TasksWidgetModelProvider.watch(context)?.model.tasks.length ?? 0;
+    return ListView.separated(
+      itemCount: groupsCount,
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(height: 3);
+      },
+      itemBuilder: (BuildContext context, int index) {
+        return _TaskListRowWidget(indexInList: index);
+      },
+    );
+  }
+}
+
+class _TaskListRowWidget extends StatelessWidget {
+  final int indexInList;
+  const _TaskListRowWidget({required this.indexInList});
+
+  @override
+  Widget build(BuildContext context) {
+    final model = TasksWidgetModelProvider.read(context)?.model;
+    final task = model?.tasks[indexInList];
+
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const BehindMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) => model?.deleteTask(indexInList),
+            backgroundColor: const Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: ColoredBox(
+        color: Colors.white,
+        child: ListTile(
+          title: Text(task!.text),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: (){},
+        ),
+      ),
     );
   }
 }
