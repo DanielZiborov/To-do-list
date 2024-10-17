@@ -26,7 +26,8 @@ class GroupsWidgetModel extends ChangeNotifier {
 
     final groupKey = box.keyAt(groupIndex) as int;
 
-    await Navigator.of(context).pushNamed('/groups/tasks',arguments: groupKey);
+    await Navigator.of(context)
+        .pushNamed(MainNavigationRouteNames.tasks, arguments: groupKey);
   }
 
   void _readGroupsFromHive(Box<Group> box) {
