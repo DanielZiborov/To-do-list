@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: mainNavigation.initialRoute,
       routes: mainNavigation.routes,
+      onGenerateRoute: mainNavigation.onGenerateRoute,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           color: Colors.blue,
