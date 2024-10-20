@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_list/domain/data_provider/box_manager.dart';
@@ -7,6 +8,7 @@ import 'package:to_do_list/ui/widgets/tasks/tasks_widget.dart';
 
 class GroupsWidgetModel extends ChangeNotifier {
   late final Future<Box<Group>> _box;
+  ValueListenable<Object>? _listenableBox;
   var _groups = <Group>[];
 
   GroupsWidgetModel() {
@@ -35,7 +37,8 @@ class GroupsWidgetModel extends ChangeNotifier {
   Future<void> setUp() async {
     _box = BoxManager.instance.openGroupBox();
     await _readGroupsFromHive();
-    (await _box).listenable().addListener(_readGroupsFromHive);
+    _listenableBox = (await _box).listenable();
+    _listenableBox?.addListener(_readGroupsFromHive);
   }
 
   Future<void> deleteGroup(int groupIndex) async {
@@ -44,6 +47,13 @@ class GroupsWidgetModel extends ChangeNotifier {
     final taskBoxName = BoxManager.instance.makeTaskBoxName(groupKey);
     await Hive.deleteBoxFromDisk(taskBoxName);
     await box.deleteAt(groupIndex);
+  }
+
+  @override
+  void dispose() async{
+    await BoxManager.instance.closeBox(await _box);
+    _listenableBox?.removeListener(_readGroupsFromHive);
+    super.dispose();
   }
 }
 
