@@ -40,6 +40,7 @@ class TasksWidgetModel extends ChangeNotifier {
   Future<void> doneToggle(int taskIndex) async {
     final task = (await _box).getAt(taskIndex);
     task?.isDone = !task.isDone;
+    task?.save();
   }
 }
 
