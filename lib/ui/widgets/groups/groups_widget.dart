@@ -21,7 +21,7 @@ class _GroupsWidgetState extends State<GroupsWidget> {
 
   @override
   void dispose() async {
-    await _model.dispose();
+    _model.dispose();
     super.dispose();
   }
 }
@@ -91,7 +91,7 @@ class _GroupListRowWidget extends StatelessWidget {
         child: ListTile(
           title: Text(group!.name),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () => model?.showTasks(context,indexInList),
+          onTap: () => model?.showTasks(context, indexInList),
         ),
       ),
     );
