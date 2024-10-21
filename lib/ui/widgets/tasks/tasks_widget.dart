@@ -36,6 +36,12 @@ class _TasksWidgetState extends State<TasksWidget> {
       child: const TasksWidgetBody(),
     );
   }
+
+  @override
+  void dispose() async {
+    await _model.dispose();
+    super.dispose();
+  }
 }
 
 class TasksWidgetBody extends StatelessWidget {
