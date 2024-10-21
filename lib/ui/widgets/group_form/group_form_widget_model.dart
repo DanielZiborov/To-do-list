@@ -3,10 +3,19 @@ import 'package:to_do_list/domain/data_provider/box_manager.dart';
 import 'package:to_do_list/domain/entity/group.dart';
 
 class GroupFormWidgetModel extends ChangeNotifier {
-  var groupName = '';
+  var _groupName = '';
   String? errorText;
+
+  set groupName(String name) {
+    if (errorText != null && name.trim().isNotEmpty) {
+      errorText = null;
+      notifyListeners();
+    }
+    _groupName = name;
+  }
+
   void saveGroup(BuildContext context) async {
-    final groupName = this.groupName.trim();
+    final groupName = _groupName.trim();
     if (groupName.isEmpty) {
       errorText = "Введите имя группы";
       notifyListeners();
